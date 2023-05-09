@@ -32,18 +32,18 @@ public class CountryTest {
         userCredential.put("rememberMe","true");
 
         Cookies cookies=
-        given()
-                .contentType(ContentType.JSON)
-                .body(userCredential)
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(userCredential)
 
-                .when()
-                .post("/auth/login")
+                        .when()
+                        .post("/auth/login")
 
-                .then()
-                //.log().all()
-                .statusCode(200)
-                .extract().response().getDetailedCookies()
-        ;
+                        .then()
+                        //.log().all()
+                        .statusCode(200)
+                        .extract().response().getDetailedCookies()
+                ;
 
         recSpec= new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
@@ -60,18 +60,18 @@ public class CountryTest {
         country.put("code",faker.address().countryCode()+faker.number().digits(5));
 
         countryID=
-        given()
-                .spec(recSpec)
-                .body(country)
-                .log().body()
+                given()
+                        .spec(recSpec)
+                        .body(country)
+                        .log().body()
 
-                .when()
-                .post("/school-service/api/countries")
+                        .when()
+                        .post("/school-service/api/countries")
 
-                .then()
-                .log().body()
-                .statusCode(201)
-                .extract().path("id");
+                        .then()
+                        .log().body()
+                        .statusCode(201)
+                        .extract().path("id");
         ;
 
         System.out.println("countryID = " + countryID);
